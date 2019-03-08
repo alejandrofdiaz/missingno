@@ -50,7 +50,7 @@ function webpackConfigGenerator(env) {
           ],
         },
         {
-          test: /\.(png|jpg|gif)$/,
+          test: /\.(png|jpg|gif|woff2)$/,
           use: [
             {
               loader: 'file-loader',
