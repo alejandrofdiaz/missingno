@@ -14,7 +14,7 @@ function webpackConfigGenerator(env) {
 
   const webpackInitConfig = {
     resolve: {
-      extensions: ['.js', '.ts'],
+      extensions: ['.js', '.ts', '.tsx', '.scss'],
     },
     entry: {
       app: ['./src/index.ts'],
