@@ -1,0 +1,37 @@
+{
+  "javascript.implicitProjectConfig.experimentalDecorators": true,
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "scss.validate": false,
+
+  "prettier.stylelintIntegration": true,
+  "prettier.disableLanguages": ["typescript", "typescriptreact"],
+
+  "javascript.format.enable": true,
+  "typescript.format.enable": true,
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll": true
+  },
+  "eslint.autoFixOnSave": true,
+
+  "[scss]": {
+    "editor.formatOnSave": true
+  },
+  "[javascript]": {
+    "editor.formatOnSave": true
+  },
+  "[typescript]": {
+    "editor.formatOnSave": true
+  },
+  "[typescriptreact]": {
+    "editor.formatOnSave": false
+  },
+  "[json]": {
+    "editor.formatOnSave": true,
+    "editor.trimAutoWhitespace": true
+  },
+  "files.exclude": {
+    "src/**/*.scss.d.ts": true,
+    "**/.vscode": true
+  }
+}

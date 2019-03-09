@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import GalleryClassName from './Gallery.styles.scss';
+import GalleryStylesScss from './Gallery.styles.scss';
 
 interface Gallery {
   children: React.ReactNode;
@@ -8,7 +8,7 @@ interface Gallery {
 }
 
 export const Gallery = ({ className, children }: Gallery) => (
-  <div className={[GalleryClassName.gallery, ...[className!]].join(' ')}>
+  <div className={[GalleryStylesScss.gallery, ...[className!]].join(' ')}>
     {children}
   </div>
 );
