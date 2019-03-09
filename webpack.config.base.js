@@ -1,3 +1,4 @@
+const dotEnvValues = require('dotenv').config();
 const path = require('path');
 const webpack = require('webpack');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
@@ -9,18 +10,38 @@ const distPath = 'dist';
 const indextInput = './src/index.html';
 const indexOutput = 'index.html';
 
+const envVariables = (env) =>
+  JSON.stringify(
+    Object.entries(env).reduce(
+      (acc, [attribute, value]) => {
+        console.log(attribute, value);
+        acc[attribute] = JSON.parse(value);
+        return acc;
+      },
+      {
+        ...dotEnvValues.parsed,
+        ...(!!JSON.parse(env.mock)
+          ? { WP_ENDPOINT: process.env.WP_MOCK_ENDPOINT }
+          : {}),
+      },
+    ),
+  );
+
 function webpackConfigGenerator(env) {
-  const sourcemaps = !!env.development;
-  const localIdentName = !!env.development
+  const isDevelopment = !!JSON.parse(env.development);
+  const sourcemaps = isDevelopment;
+  const localIdentName = isDevelopment
     ? '[local]--[hash:base64:5]'
     : '[hash:base64:2]';
+
+  const isMock = !!env.mock;
 
   const webpackInitConfig = {
     resolve: {
       extensions: ['.js', '.ts', '.tsx', '.scss'],
     },
     entry: {
-      app: ['./src/index.ts'],
+      app: ['./src/index.tsx'],
     },
     output: {
       path: path.join(basePath, distPath),
@@ -29,7 +50,7 @@ function webpackConfigGenerator(env) {
     module: {
       rules: [
         {
-          test: /\.ts/,
+          test: /\.tsx?/,
           exclude: /node_modules/,
           use: ['ts-loader', 'tslint-loader'],
         },
@@ -90,7 +111,7 @@ function webpackConfigGenerator(env) {
         chunkFilename: '[id].css',
       }),
       new webpack.DefinePlugin({
-        ENV: JSON.stringify(env),
+        ENV: envVariables(env),
       }),
     ],
   };
