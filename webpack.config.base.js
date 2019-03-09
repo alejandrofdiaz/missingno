@@ -11,6 +11,7 @@ const indexOutput = 'index.html';
 
 function webpackConfigGenerator(env) {
   const sourcemaps = !!env.development;
+  const localIdentName = !!env.development ? '[local]--[hash:base64:5]' : '[hash:base64:2]';
 
   const webpackInitConfig = {
     resolve: {
@@ -44,9 +45,13 @@ function webpackConfigGenerator(env) {
           exclude: /node_modules/,
           use: [
             MiniCSSExtract.loader,
-            { loader: 'css-loader', options: { sourceMap: sourcemaps } },
-            { loader: 'postcss-loader', options: { sourceMap: sourcemaps } },
-            { loader: 'sass-loader', options: { sourceMap: sourcemaps } },
+            { loader: 'css-loader', options: { 
+              sourceMap: sourcemaps, 
+              modules: true,
+              localIdentName,
+          } },
+            { loader: 'postcss-loader', options: { sourceMap: sourcemaps, modules:true } },
+            { loader: 'sass-loader', options: { sourceMap: sourcemaps, modules:true } },
           ],
         },
         {
