@@ -10,18 +10,28 @@ const MEDIA_BREAKPOINT = {
 
 export const getMediaSrcSet = ({
   alt_text,
-  media_details: { sizes },
-}: MediaObject) => ({
-  srcSet: `
-    ${sizes.medium.source_url} ${sizes.medium.width}w,
-    ${sizes.large.source_url} ${sizes.large.width}w,
-    ${sizes.full.source_url} ${sizes.full.width}w
+  media_details: {
+    sizes: { medium, large, full },
+  },
+}: MediaObject) => {
+  const safeSizes = {
+    medium,
+    large: large || medium,
+    full: full || medium,
+  };
+
+  return {
+    srcSet: `
+    ${safeSizes.medium.source_url} ${safeSizes.medium.width}w,
+    ${safeSizes.large.source_url} ${safeSizes.large.width}w,
+    ${safeSizes.full.source_url} ${safeSizes.full.width}w
   `,
-  sizes: `
-    (max-width: ${MEDIA_BREAKPOINT.sm}) ${sizes.medium.width}px,
-    (max-width: ${MEDIA_BREAKPOINT.md}) ${sizes.large.width}px,
-    ${sizes.full.width}px,
+    sizes: `
+    (max-width: ${MEDIA_BREAKPOINT.sm}) ${safeSizes.medium.width}px,
+    (max-width: ${MEDIA_BREAKPOINT.md}) ${safeSizes.large.width}px,
+    ${safeSizes.full.width}px,
   `,
-  alt: alt_text,
-  src: sizes.full.source_url,
-});
+    alt: alt_text,
+    src: safeSizes.full.source_url,
+  };
+};

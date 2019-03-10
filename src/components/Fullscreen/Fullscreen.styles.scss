@@ -1,0 +1,29 @@
+// @import 'styles/_vars';
+
+.fullscreen {
+  display: block;
+}
+
+.fullscreenBody {
+  display: block;
+}
+
+.fullscreenData {
+  display: block;
+}
+
+.fullscreenClose {
+  display: block;
+}
+
+.fullscreenLightbox {
+  display: block;
+}
+
+.fullscreenWrapper {
+  display: none;
+}
+
+.fullscreenWrapper.fullscreenOpened {
+  display: block;
+}

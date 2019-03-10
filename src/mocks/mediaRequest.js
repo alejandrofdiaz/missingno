@@ -773,6 +773,15 @@ module.exports = [
           source_url:
             'http://localhost/missigno-test/wp-content/uploads/2019/02/2019-02-23-11_22_51-MongoDB-Compass-Community-Connect-282x300.png',
         },
+        large: {
+          file:
+            '2019-02-23-11_22_51-MongoDB-Compass-Community-Connect-282x300.png',
+          width: 282,
+          height: 300,
+          mime_type: 'image/png',
+          source_url:
+            'http://localhost/missigno-test/wp-content/uploads/2019/02/2019-02-23-11_22_51-MongoDB-Compass-Community-Connect-282x300.png',
+        },
         full: {
           file: '2019-02-23-11_22_51-MongoDB-Compass-Community-Connect.png',
           width: 416,

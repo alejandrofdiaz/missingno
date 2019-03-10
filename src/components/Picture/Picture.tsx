@@ -1,5 +1,8 @@
 import { DefaultCopies } from 'lib/const';
 import * as React from 'react';
+import { StateContext } from 'state/state';
+import { Omit } from 'utility-types';
+import { getMediaSrcSet } from 'utils/getMediaSrc';
 import { noop } from 'utils/noop';
 
 import PictureStylesScss from './Picture.styles.scss';
@@ -9,6 +12,7 @@ export interface PictureProps {
   date: Date;
   id: string | number;
   onClick: (id: string | number) => void;
+  rawData?: ReturnType<typeof getMediaSrcSet>;
   src: string;
 }
 
@@ -32,3 +36,16 @@ Picture.defaultProps = {
 };
 
 Picture.displayName = 'Picture';
+
+export const PictureWithContext = (props: Omit<PictureProps, 'onClick'>) => {
+  const { setFullScreenData, toggleFullscreen } = React.useContext(
+    StateContext,
+  );
+
+  const onClick = () => {
+    setFullScreenData!(props.rawData!);
+    toggleFullscreen!(true);
+  };
+
+  return <Picture {...props} onClick={onClick} />;
+};
