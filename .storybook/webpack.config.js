@@ -11,6 +11,7 @@ const localIdentName = '[name]__[local]___[hash:base64:5]';
 module.exports = {
   resolve: {
     extensions: ['.js', '.ts', '.tsx', '.scss'],
+    modules: [path.resolve('./src'), 'node_modules'],
   },
   plugins: [
     // your custom plugins

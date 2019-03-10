@@ -20,7 +20,7 @@ const envVariables = (env) =>
       },
       {
         ...dotEnvValues.parsed,
-        ...(!!JSON.parse(env.mock)
+        ...(!!JSON.parse(env.mock || false)
           ? { WP_ENDPOINT: process.env.WP_MOCK_ENDPOINT }
           : {}),
       },
@@ -39,6 +39,7 @@ function webpackConfigGenerator(env) {
   const webpackInitConfig = {
     resolve: {
       extensions: ['.js', '.ts', '.tsx', '.scss'],
+      modules: [path.resolve('./src'), 'node_modules'],
     },
     entry: {
       app: ['./src/index.tsx'],
