@@ -1217,6 +1217,22 @@
     react-syntax-highlighter "^8.0.1"
     regenerator-runtime "^0.12.1"
 
+"@storybook/addon-viewport@^5.0.1":
+  version "5.0.1"
+  resolved "https://botbuilder.myget.org/F/botbuilder-v4-js-daily/npm/@storybook/addon-viewport/-/@storybook/addon-viewport-5.0.1.tgz#ae015ee49e2c3fa9f07b723099c22291fddd7140"
+  integrity sha1-rgFe5J4sP6nwe3IwmcIikf3dcUA=
+  dependencies:
+    "@storybook/addons" "5.0.1"
+    "@storybook/client-logger" "5.0.1"
+    "@storybook/components" "5.0.1"
+    "@storybook/core-events" "5.0.1"
+    "@storybook/theming" "5.0.1"
+    core-js "^2.6.5"
+    global "^4.3.2"
+    memoizerific "^1.11.3"
+    prop-types "^15.6.2"
+    util-deprecate "^1.0.2"
+
 "@storybook/addons@5.0.1", "@storybook/addons@^5.0.1":
   version "5.0.1"
   resolved "https://botbuilder.myget.org/F/botbuilder-v4-js-daily/npm/@storybook/addons/-/@storybook/addons-5.0.1.tgz#24ae1c80cea973de3e0125614a015fbb0629ac34"
