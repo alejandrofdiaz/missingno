@@ -4,10 +4,11 @@ import { noop } from 'utils/noop';
 
 import PictureStylesScss from './Picture.styles.scss';
 
-interface PictureProps {
+export interface PictureProps {
   alt: string;
-  id: string;
-  onClick: (id: string) => void;
+  date: Date;
+  id: string | number;
+  onClick: (id: string | number) => void;
   src: string;
 }
 
@@ -27,4 +28,7 @@ Picture.defaultProps = {
   alt: DefaultCopies.ALT_DESCRIPTION,
   id: 'unknown',
   onClick: noop,
+  date: new Date(),
 };
+
+Picture.displayName = 'Picture';

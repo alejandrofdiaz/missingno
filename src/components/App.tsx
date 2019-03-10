@@ -1,14 +1,15 @@
-import React, { Fragment, useEffect, useState } from 'react';
+import { api } from 'api/base';
+import { MediaObject } from 'api/MediaObject';
+import React, { useEffect, useState } from 'react';
+import { monthSortCallback } from 'utils/gallerySortCallback';
 
-import { api } from '../api/base';
-
+import { Container } from './Container/Container';
 import { Gallery } from './Gallery/Gallery';
 import { Picture } from './Picture/Picture';
 
 export const App: React.FunctionComponent = () => {
   const [initialized, setInitialized] = useState(false);
-  // tslint:disable-next-line:no-any
-  const [pictureData, setPictureData] = useState<any[]>([]);
+  const [pictureData, setPictureData] = useState<MediaObject[]>([]);
 
   useEffect(() => {
     if (!initialized) {
@@ -20,13 +21,19 @@ export const App: React.FunctionComponent = () => {
   }, [initialized]);
 
   return (
-    <Fragment>
+    <Container>
       <h1>My App</h1>
-      <Gallery>
-        {pictureData.map((data) => (
-          <Picture src={data.source_url} />
+      <Gallery sortCallback={monthSortCallback}>
+        {pictureData.map(({ source_url, date_gmt, id, alt_text }) => (
+          <Picture
+            src={source_url}
+            alt={alt_text}
+            date={new Date(date_gmt)}
+            key={id}
+            id={id}
+          />
         ))}
       </Gallery>
-    </Fragment>
+    </Container>
   );
 };
