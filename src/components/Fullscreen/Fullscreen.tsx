@@ -11,7 +11,11 @@ interface FullscreenProps {
   toggleFullscreen: (value: boolean) => void;
 }
 
-export const Fullscreen = ({ opened, toggleFullscreen }: FullscreenProps) => {
+export const Fullscreen = ({
+  opened,
+  toggleFullscreen,
+  data,
+}: FullscreenProps) => {
   return (
     <div
       className={[
@@ -20,8 +24,23 @@ export const Fullscreen = ({ opened, toggleFullscreen }: FullscreenProps) => {
       ].join(' ')}
     >
       <div className={FullscreenStylesScss.fullscreen}>
-        <img className={FullscreenStylesScss.fullscreenBody} />
-        <div className={FullscreenStylesScss.fullscreenData} />
+        {!!data && (
+          <img
+            className={FullscreenStylesScss.fullscreenBody}
+            srcSet={data!.srcSet}
+            src={data!.src}
+            alt={data!.alt}
+            sizes={data!.sizes}
+          />
+        )}
+        {!!data && (
+          <div className={FullscreenStylesScss.fullscreenData}>
+            <p className={FullscreenStylesScss.fullscreenField}>{data!.alt}</p>
+            <p className={FullscreenStylesScss.fullscreenField}>
+              {data!.date.toLocaleDateString()}
+            </p>
+          </div>
+        )}
       </div>
       <div className={FullscreenStylesScss.fullscreenLightbox} />
       <input

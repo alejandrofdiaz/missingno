@@ -9,6 +9,7 @@ const MEDIA_BREAKPOINT = {
 };
 
 export const getMediaSrcSet = ({
+  date_gmt,
   alt_text,
   media_details: {
     sizes: { medium, large, full },
@@ -33,5 +34,6 @@ export const getMediaSrcSet = ({
   `,
     alt: alt_text,
     src: safeSizes.full.source_url,
+    date: new Date(date_gmt),
   };
 };
