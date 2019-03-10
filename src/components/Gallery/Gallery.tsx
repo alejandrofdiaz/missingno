@@ -8,7 +8,7 @@ interface Gallery {
 }
 
 export const Gallery = ({ className, children }: Gallery) => (
-  <div className={[GalleryStylesScss.gallery, ...[className!]].join(' ')}>
+  <div className={[GalleryStylesScss.gallery, ...[className]].join(' ')}>
     {children}
   </div>
 );

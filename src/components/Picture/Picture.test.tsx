@@ -5,8 +5,12 @@ import { Picture } from './Picture';
 
 describe('<Picture>', () => {
   let component: ShallowWrapper;
+  let onClickMock: jest.Mock;
   beforeEach(() => {
-    component = shallow(<Picture alt="test" src="test" />);
+    onClickMock = jest.fn();
+    component = shallow(
+      <Picture alt="test" src="test" onClick={onClickMock} id="test" />,
+    );
   });
 
   it('should render alt tag', () => {
@@ -15,7 +19,15 @@ describe('<Picture>', () => {
   it('should render src props', () => {
     expect(component.find('img').props().src).toBe('test');
   });
-  it('should render className', () => {
+  it('should render img', () => {
     expect(component.find('img').props().className).toBe('picture');
+  });
+  it('should render button', () => {
+    expect(component.find('input')).toHaveLength(1);
+  });
+  it('should call trigger with params', () => {
+    // tslint:disable-next-line:no-any
+    (component.find('input').props() as any).onClick();
+    expect(onClickMock).toHaveBeenCalledWith('test');
   });
 });

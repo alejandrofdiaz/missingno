@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 
 import { api } from '../api/base';
 
@@ -7,6 +7,7 @@ import { Picture } from './Picture/Picture';
 
 export const App: React.FunctionComponent = () => {
   const [initialized, setInitialized] = useState(false);
+  // tslint:disable-next-line:no-any
   const [pictureData, setPictureData] = useState<any[]>([]);
 
   useEffect(() => {
@@ -19,13 +20,13 @@ export const App: React.FunctionComponent = () => {
   }, [initialized]);
 
   return (
-    <h1>
-      My App
+    <Fragment>
+      <h1>My App</h1>
       <Gallery>
         {pictureData.map((data) => (
           <Picture src={data.source_url} />
         ))}
       </Gallery>
-    </h1>
+    </Fragment>
   );
 };
