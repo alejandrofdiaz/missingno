@@ -52,8 +52,16 @@ function webpackConfigGenerator(env) {
       rules: [
         {
           test: /\.tsx?/,
-          exclude: /node_modules/,
-          use: ['ts-loader', 'tslint-loader'],
+          exclude: /node_modules|test.tsx?|stories.tsx?/,
+          use: [
+            {
+              loader: 'ts-loader',
+              options: {
+                onlyCompileBundledFiles: true,
+              },
+            },
+            'tslint-loader',
+          ],
         },
         {
           test: /\.css/,
