@@ -1,21 +1,22 @@
 import { api } from 'api/base';
 import { MediaObject } from 'api/MediaObject';
 import React, { useEffect, useState } from 'react';
-import { StateContext } from 'state/state';
+import { FullscreenData, StateContext } from 'state/state';
 import { monthSortCallback } from 'utils/gallerySortCallback';
-import { getMediaSrcSet } from 'utils/getMediaSrc';
 
 import { Container } from './Container/Container';
 import { FullscreenWithContext } from './Fullscreen/Fullscreen';
 import { Gallery } from './Gallery/Gallery';
 import { PictureWithContext } from './Picture/Picture';
+
 export const App: React.FunctionComponent = () => {
   const [initialized, setInitialized] = useState(false);
   const [fullScreenOpened, toggleFullscreen] = useState(false);
   const [pictureData, setPictureData] = useState<MediaObject[]>([]);
-  const [fullScreenData, setFullScreenData] = useState<
-    ReturnType<typeof getMediaSrcSet>
-  >();
+  const [fullScreenData, setFullScreenData] = useState<FullscreenData>({
+    index: -1,
+    rawData: undefined,
+  });
 
   useEffect(() => {
     if (!initialized) {
@@ -26,13 +27,29 @@ export const App: React.FunctionComponent = () => {
     setInitialized(true);
   }, [initialized]);
 
+  const onNext = (currentIndex: number) => {
+    const followingIndex = currentIndex + 1;
+    const nextPicture = pictureData[followingIndex];
+    if (!!nextPicture) {
+      setFullScreenData({ rawData: nextPicture, index: followingIndex });
+    }
+  };
+
+  const onPrevious = (currentIndex: number) => {
+    const followingIndex = currentIndex - 1;
+    const previousPicture = pictureData[followingIndex];
+    if (!!previousPicture) {
+      setFullScreenData({ rawData: previousPicture, index: followingIndex });
+    }
+  };
+
   return (
     <StateContext.Provider
       value={{
         setFullScreenData,
-        fullScreenData,
         fullScreenOpened,
         toggleFullscreen,
+        fullScreenData,
       }}
     >
       <Container>
@@ -45,11 +62,12 @@ export const App: React.FunctionComponent = () => {
               date={new Date(date_gmt)}
               key={id}
               id={id}
-              rawData={getMediaSrcSet(pictureData[index])}
+              currentIndex={index}
+              rawData={pictureData[index]}
             />
           ))}
         </Gallery>
-        <FullscreenWithContext />
+        <FullscreenWithContext onNext={onNext} onPrevious={onPrevious} />
       </Container>
     </StateContext.Provider>
   );

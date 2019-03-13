@@ -5,6 +5,8 @@ $lightbox-max-height: 75%;
 $lightbox-max-width: 90%;
 $fullscreen-background: white;
 $fullscreen-data-color: white;
+$fullscreen-button-direction-width: $spacing * 10;
+$fullscreen-button-color: $lightbox-color;
 
 .fullscreen {
   width: 100%;
@@ -15,10 +17,12 @@ $fullscreen-data-color: white;
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
 }
 
 .fullscreenBody {
-  max-width: $lightbox-max-width;
+  display: block;
+  width: 100%;
 }
 
 .fullscreenData {
@@ -59,4 +63,31 @@ $fullscreen-data-color: white;
 .fullscreenField {
   display: block;
   color: $fullscreen-data-color;
+}
+
+.fullscreenImageWrapper {
+  position: relative;
+  max-width: $lightbox-max-width;
+}
+
+.fullscreenDirection {
+  height: 100%;
+  width: $fullscreen-button-direction-width;
+  opacity: 0;
+  position: absolute;
+  border: none;
+  box-shadow: none;
+  cursor: pointer;
+  outline: none;
+  &:hover {
+    opacity: 1;
+    background-color: $fullscreen-button-color;
+  }
+
+  &Next {
+    right: 0;
+  }
+  &Previous {
+    left: 0;
+  }
 }

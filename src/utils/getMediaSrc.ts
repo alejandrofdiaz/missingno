@@ -8,13 +8,19 @@ const MEDIA_BREAKPOINT = {
   xl: '1200px',
 };
 
-export const getMediaSrcSet = ({
-  date_gmt,
-  alt_text,
-  media_details: {
-    sizes: { medium, large, full },
-  },
-}: MediaObject) => {
+export const getMediaSrcSet = (mediaObject: MediaObject) => {
+  if (!mediaObject) {
+    return;
+  }
+  const {
+    date_gmt,
+    alt_text,
+    media_details: {
+      sizes: { medium, large, full },
+    },
+  } = mediaObject;
+
+
   const safeSizes = {
     medium,
     large: large || medium,

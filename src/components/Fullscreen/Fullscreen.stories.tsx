@@ -10,9 +10,12 @@ storiesOf('<Fullscreen>', module)
 
     return (
       <Fullscreen
+        onNext={() => alert('Next pressed!')}
+        onPrevious={() => alert('Previous pressed!')}
         opened={opened}
         toggleFullscreen={alert}
         data={{
+          date: new Date(),
           alt: 'Very Cute Picture',
           sizes: `(max-width: 320px) 280px,
       (max-width: 480px) 440px,

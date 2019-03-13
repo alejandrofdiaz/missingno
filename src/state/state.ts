@@ -1,13 +1,19 @@
+import { MediaObject } from 'api/MediaObject';
 import { createContext } from 'react';
-import { getMediaSrcSet } from 'utils/getMediaSrc';
 
 interface GlobalState {
-  fullScreenData?: ReturnType<typeof getMediaSrcSet>;
+  fullScreenData: FullscreenData;
   fullScreenOpened: boolean;
-  setFullScreenData?: (value: ReturnType<typeof getMediaSrcSet>) => void;
+  setFullScreenData?: (props: FullscreenData) => void;
   toggleFullscreen?: (value: boolean) => void;
+}
+
+export interface FullscreenData {
+  index: number;
+  rawData?: MediaObject;
 }
 
 export const StateContext = createContext<GlobalState>({
   fullScreenOpened: false,
+  fullScreenData: { index: -1, rawData: undefined },
 });

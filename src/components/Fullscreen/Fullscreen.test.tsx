@@ -6,11 +6,24 @@ import { Fullscreen } from './Fullscreen';
 describe('<Fullscreen />', () => {
   let component: ShallowWrapper;
   let onClickMock: jest.Mock;
-
+  let onNextMock: jest.Mock;
+  let onPreviousMock: jest.Mock;
   describe('on opened', () => {
     beforeEach(() => {
       onClickMock = jest.fn();
-      component = shallow(<Fullscreen toggleFullscreen={onClickMock} opened />);
+      onNextMock = jest.fn();
+      onPreviousMock = jest.fn();
+      component = shallow(
+        // tslint:disable-next-line:no-any
+        <Fullscreen
+          toggleFullscreen={onClickMock}
+          opened
+          currentIndex={6}
+          data={{ date: new Date() } as any}
+          onNext={onNextMock}
+          onPrevious={onPreviousMock}
+        />,
+      );
     });
 
     it('should have correct classes', () => {
@@ -27,8 +40,20 @@ describe('<Fullscreen />', () => {
     });
 
     it('should trigger toggleFullscreen on click with false', () => {
-      (component.find('input') as any).props().onClick();
+      // tslint:disable-next-line:no-any
+      (component.find('input.fullscreenClose') as any).props().onClick();
       expect(onClickMock).toHaveBeenCalledWith(false);
+    });
+
+    it('should call on next callback', () => {
+      // tslint:disable-next-line:no-any
+      (component.find('.fullscreenDirectionNext').props().onClick as any)();
+      expect(onNextMock).toHaveBeenCalledWith(6);
+    });
+    it('should call on previous callback', () => {
+      // tslint:disable-next-line:no-any
+      (component.find('.fullscreenDirectionPrevious').props().onClick as any)();
+      expect(onPreviousMock).toHaveBeenCalledWith(6);
     });
   });
 
@@ -45,7 +70,8 @@ describe('<Fullscreen />', () => {
     });
 
     it('should trigger toggleFullscreen on click with true', () => {
-      (component.find('input') as any).props().onClick();
+      // tslint:disable-next-line:no-any
+      (component.find('input.fullscreenClose') as any).props().onClick();
       expect(onClickMock).toHaveBeenCalledWith(true);
     });
   });
