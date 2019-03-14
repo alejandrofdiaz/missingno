@@ -4,7 +4,7 @@ import { StateContext } from 'state/state';
 
 import { Picture, PictureWithContext } from './Picture';
 
-describe('<Picture>', () => {
+describe('<Picture/>', () => {
   let component: ShallowWrapper;
   let onClickMock: jest.Mock;
   beforeEach(() => {

@@ -8,6 +8,7 @@ $grid-min-value-tablet: $spacing * 20;
 
 $grid-gap-desktop: $spacing * 2;
 $grid-min-value-desktop: $spacing * 23;
+$gallery-row-wrapper-padding-mobile: $spacing * 2;
 
 .galleryRow {
   display: grid;
@@ -53,4 +54,10 @@ $grid-min-value-desktop: $spacing * 23;
 
 .galleryRowTitle {
   color: gray;
+
+  padding: 0 $gallery-row-wrapper-padding-mobile;
+
+  @media only screen and (min-width: $grid-breakpoints-md) {
+    padding: 0;
+  }
 }
