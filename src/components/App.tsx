@@ -7,6 +7,7 @@ import { monthSortCallback } from 'utils/gallerySortCallback';
 import { Container } from './Container/Container';
 import { FullscreenWithContext } from './Fullscreen/Fullscreen';
 import { Gallery } from './Gallery/Gallery';
+import { Header } from './Header/Header';
 import { PictureWithContext } from './Picture/Picture';
 
 export const App: React.FunctionComponent = () => {
@@ -53,7 +54,7 @@ export const App: React.FunctionComponent = () => {
       }}
     >
       <Container>
-        <h1>My App</h1>
+        <Header />
         <Gallery sortCallback={monthSortCallback}>
           {pictureData.map(({ source_url, date_gmt, id, alt_text }, index) => (
             <PictureWithContext
