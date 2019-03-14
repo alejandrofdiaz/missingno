@@ -5,6 +5,8 @@
   height: 100%;
   object-fit: cover;
   position: absolute;
+  left: 0;
+  top: 0;
 }
 
 .wrapper {
@@ -13,19 +15,19 @@
   position: relative;
 
   .moreButton {
-    cursor: pointer;
-    position: absolute;
-    top: 0;
-    right: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+    box-shadow: none;
   }
 
   @media (hover: hover) {
     .moreButton {
-      display: none;
+      cursor: pointer;
     }
     &:hover {
       .moreButton {
-        display: block;
+        cursor: pointer;
       }
     }
   }

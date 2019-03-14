@@ -68,8 +68,9 @@ $fullscreen-button-color: $lightbox-color;
 .fullscreenImageWrapper {
   position: relative;
   width: 100%;
-  @media only screen and (min-width: $grid-breakpoints-lg) {
+  @media only screen and (min-width: $grid-breakpoints-md) {
     max-width: $lightbox-max-width;
+    width: auto;
   }
 }
 

@@ -5,6 +5,7 @@ import { FullscreenData, StateContext } from 'state/state';
 import { monthSortCallback } from 'utils/gallerySortCallback';
 
 import { Container } from './Container/Container';
+import { Footer, FooterElement } from './Footer/Footer';
 import { FullscreenWithContext } from './Fullscreen/Fullscreen';
 import { Gallery } from './Gallery/Gallery';
 import { Header } from './Header/Header';
@@ -68,8 +69,11 @@ export const App: React.FunctionComponent = () => {
             />
           ))}
         </Gallery>
-        <FullscreenWithContext onNext={onNext} onPrevious={onPrevious} />
+        <Footer>
+          <FooterElement href="https://twitter.com/acurtis_" title="Twitter" />
+        </Footer>
       </Container>
+      <FullscreenWithContext onNext={onNext} onPrevious={onPrevious} />
     </StateContext.Provider>
   );
 };

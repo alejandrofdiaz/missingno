@@ -19,13 +19,13 @@ export interface PictureProps {
 
 export const Picture = ({ src, alt, onClick, id }: PictureProps) => (
   <div className={PictureStylesScss.wrapper}>
-    <img className={PictureStylesScss.picture} src={src} alt={alt} />
-    <input
+    <button
       type="button"
-      value="👀"
       className={PictureStylesScss.moreButton}
       onClick={() => onClick(id)}
-    />
+    >
+      <img className={PictureStylesScss.picture} src={src} alt={alt} />
+    </button>
   </div>
 );
 

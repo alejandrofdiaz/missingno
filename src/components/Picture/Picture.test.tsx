@@ -30,11 +30,11 @@ describe('<Picture/>', () => {
     expect(component.find('img').props().className).toBe('picture');
   });
   it('should render button', () => {
-    expect(component.find('input')).toHaveLength(1);
+    expect(component.find('button')).toHaveLength(1);
   });
   it('should call trigger with params', () => {
     // tslint:disable-next-line:no-any
-    (component.find('input').props() as any).onClick();
+    (component.find('button').props() as any).onClick();
     expect(onClickMock).toHaveBeenCalledWith('test');
   });
 });

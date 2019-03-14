@@ -52,9 +52,15 @@ export const Fullscreen = ({
         ...(opened ? [FullscreenStylesScss.fullscreenOpened] : []),
       ].join(' ')}
     >
-      <div className={FullscreenStylesScss.fullscreen}>
+      <div
+        className={FullscreenStylesScss.fullscreen}
+        onClick={() => toggleFullscreen(false)}
+      >
         {!!data && (
-          <div className={FullscreenStylesScss.fullscreenImageWrapper}>
+          <div
+            className={FullscreenStylesScss.fullscreenImageWrapper}
+            onClick={(event) => event.stopPropagation()}
+          >
             <input
               className={`${FullscreenStylesScss.fullscreenDirection} ${
                 FullscreenStylesScss.fullscreenDirectionPrevious
