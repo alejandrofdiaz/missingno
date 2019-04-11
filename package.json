@@ -7,7 +7,7 @@
     "start": "webpack-dev-server --config=webpack.config.js --env.development=true",
     "start:mock": "webpack-dev-server --config=webpack.config.js --env.development=true --env.mock=true",
     "build": "webpack --config=webpack.config.js --env.development=true",
-    "build-prod": "webpack --config=webpack.config.js --env.production=true",
+    "build:prod": "webpack --config=webpack.config.js --env.development=false",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "test": "jest ."
