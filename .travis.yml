@@ -1,0 +1,8 @@
+language: node_js
+node_js:
+  - 11.10.0
+script:
+  - yarn
+cache:
+  directories:
+    - 'node_modules'
