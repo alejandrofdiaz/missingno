@@ -20,7 +20,6 @@ export const getMediaSrcSet = (mediaObject: MediaObject) => {
     },
   } = mediaObject;
 
-
   const safeSizes = {
     medium,
     large: large || medium,

@@ -1,7 +1,7 @@
 import { getMediaSrcSet } from './getMediaSrc';
 
 describe('getMediaSrcSet', () => {
-  let result: any;
+  let result: any; // tslint:disable-line no-any
   beforeEach(() => {
     result = getMediaSrcSet({
       alt_text: 'altTextTest',
@@ -21,7 +21,7 @@ describe('getMediaSrcSet', () => {
           },
         },
       },
-    } as any);
+    } as any); // tslint:disable-line no-any
   });
 
   it('should return alt test', () => {

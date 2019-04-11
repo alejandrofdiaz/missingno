@@ -19,7 +19,7 @@ describe('<Fullscreen />', () => {
           toggleFullscreen={onClickMock}
           opened
           currentIndex={6}
-          data={{ date: new Date() } as any}
+          data={{ date: new Date() } as any} // tslint:disable-line no-any
           onNext={onNextMock}
           onPrevious={onPreviousMock}
         />,
