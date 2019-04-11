@@ -40,9 +40,7 @@ module.exports = {
         'static-method-regex': /^[a-z$][\w\d]+$/,
       },
     ],
-    'import-name': [true, {
-      'react': 'React'
-    }],
+    'import-name': false,
     indent: false, // prettier
     'interface-name': [true, 'never-prefix'],
     'jsdoc-format': true,
