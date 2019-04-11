@@ -1,3 +1,63 @@
+@import 'styles/_vars';
+
+$grid-gap-mobile: $spacing/2;
+$grid-min-value-mobile: $spacing * 14;
+
+$grid-gap-tablet: $spacing/2;
+$grid-min-value-tablet: $spacing * 20;
+
+$grid-gap-desktop: $spacing * 2;
+$grid-min-value-desktop: $spacing * 23;
+$gallery-row-wrapper-padding-mobile: $spacing * 2;
+
+.galleryRow {
+  display: grid;
+
+  grid-template-columns: repeat(auto-fill, minmax($grid-min-value-mobile, 1fr));
+
+  grid-auto-rows: 1fr;
+  grid-gap: $grid-gap-mobile;
+
+  &::before {
+    content: '';
+    width: 0;
+    padding-bottom: 100%;
+    grid-row: 1 / 1;
+    grid-column: 1 / 1;
+  }
+
+  & > *:first-child {
+    grid-row: 1 / 1;
+    grid-column: 1 / 1;
+  }
+
+  @media only screen and (min-width: $grid-breakpoints-md) {
+    grid-gap: $grid-gap-tablet;
+    grid-template-columns: repeat(
+      auto-fill,
+      minmax($grid-min-value-tablet, 1fr)
+    );
+  }
+
+  @media only screen and (min-width: $grid-breakpoints-lg) {
+    grid-gap: $grid-gap-desktop;
+    grid-template-columns: repeat(
+      auto-fill,
+      minmax($grid-min-value-desktop, 1fr)
+    );
+  }
+}
+
 .gallery {
-  background-color: blueviolet;
+  width: 100%;
+}
+
+.galleryRowTitle {
+  color: gray;
+
+  padding: 0 $gallery-row-wrapper-padding-mobile;
+
+  @media only screen and (min-width: $grid-breakpoints-md) {
+    padding: 0;
+  }
 }

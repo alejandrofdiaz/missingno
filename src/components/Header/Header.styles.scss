@@ -1,0 +1,15 @@
+@import 'styles/_vars';
+
+$header-font-size: 2rem;
+$header-wrapper-padding-mobile: $spacing * 2;
+.header {
+  font-size: $header-font-size;
+}
+
+.container {
+  padding: 0 $header-wrapper-padding-mobile;
+
+  @media only screen and (min-width: $grid-breakpoints-md) {
+    padding: 0;
+  }
+}

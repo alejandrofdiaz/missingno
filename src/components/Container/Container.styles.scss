@@ -1,0 +1,17 @@
+@import 'styles/_vars';
+
+$padding-tablet: $spacing * 3;
+$padding-desktop: $spacing * 3;
+
+.container {
+  margin: 0 auto;
+  max-width: $grid-breakpoints-lg;
+
+  @media only screen and (min-width: $grid-breakpoints-md) {
+    padding: $padding-tablet;
+  }
+
+  @media only screen and (min-width: $grid-breakpoints-lg) {
+    padding: $padding-desktop;
+  }
+}

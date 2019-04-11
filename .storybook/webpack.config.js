@@ -5,12 +5,13 @@
 // IMPORTANT
 // When you add this file, we won't add the default configurations which is similar
 // to "React Create App". This only has babel loader to load JavaScript.
-
+const path = require('path');
 const localIdentName = '[name]__[local]___[hash:base64:5]';
 
 module.exports = {
   resolve: {
     extensions: ['.js', '.ts', '.tsx', '.scss'],
+    modules: [path.resolve('./src'), 'node_modules'],
   },
   plugins: [
     // your custom plugins
@@ -19,7 +20,7 @@ module.exports = {
     rules: [
       {
         test: /\.tsx?/,
-        exclude: /node_modules/,
+        exclude: /node_modules|test.tsx?/,
         use: ['ts-loader'],
       },
       {

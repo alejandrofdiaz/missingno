@@ -1,0 +1,31 @@
+@import 'styles/_vars';
+
+$container-padding: $spacing * 2;
+$container-background: rgba(255, 255, 255, 1);
+$container-color: black;
+
+.container {
+  position: sticky;
+  bottom: 0;
+  padding: $container-padding;
+  background-color: $container-background;
+  color: $container-color;
+}
+
+.list {
+  position: relative;
+  display: flex;
+  margin: 0;
+  padding: 0;
+  justify-content: space-around;
+}
+
+.element {
+  width: 100%;
+  list-style: none;
+  text-align: center;
+}
+
+.link {
+  color: inherit;
+}
