@@ -5,9 +5,7 @@ import { monthSortCallback } from 'utils/gallerySortCallback';
 import { Gallery, GalleryRow } from './Gallery';
 
 let count = 0;
-const getDate = () => {
-  return new Date(1, count + 1, 2);
-};
+const getDate = () => new Date(1, (count += 1), 2);
 
 // tslint:disable-next-line: no-any
 const PictureMock = ({ date }: any = { date: new Date(1, count, 2) }) => {
