@@ -2,7 +2,7 @@
 
 $lightbox-color: rgba(51, 51, 51, 0.7);
 $lightbox-max-height: 75%;
-$lightbox-max-width: 90%;
+$lightbox-max-width: 75%;
 $fullscreen-background: white;
 $fullscreen-data-color: white;
 $fullscreen-button-direction-width: $spacing * 10;
@@ -69,8 +69,7 @@ $fullscreen-button-color: $lightbox-color;
   position: relative;
   width: 100%;
   @media only screen and (min-width: $grid-breakpoints-md) {
-    max-width: $lightbox-max-width;
-    width: auto;
+    width: $lightbox-max-width;
   }
 }
 
