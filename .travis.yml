@@ -8,3 +8,8 @@ script:
 cache:
   directories:
     - 'node_modules'
+deploy:
+  provider: script
+  script: bash deploy.sh
+  on:
+    branch: master
