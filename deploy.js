@@ -1,6 +1,9 @@
-const { parsed : ENV } = require('dotenv').config();
+const dotEnvValues = require('dotenv').config();
+
 const FtpDeploy = require('ftp-deploy');
 const path = require('path');
+
+const ENV = dotEnvValues.parsed;
 
 const config = {
   user: ENV.FTP_USER,

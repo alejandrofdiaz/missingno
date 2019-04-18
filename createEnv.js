@@ -1,6 +1,8 @@
-const { parsed : ENV } = require('dotenv').config();
+const dotEnvValues = require('dotenv').config();
 const fs = require('fs');
 const path = require('path');
+
+const ENV = dotEnvValues.parsed;
 
 const createEnvContent = () => Object.entries(ENV)
   .reduce((prev, [attr, value])=>
