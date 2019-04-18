@@ -22,5 +22,5 @@ new FtpDeploy()
   .deploy(config)
   .then(console.log)
   .catch(err=>{
-    throw new Error('Deploy Error', err);
+    throw new Error('Deploy Error '+ err);
   });
