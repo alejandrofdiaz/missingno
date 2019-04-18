@@ -3,6 +3,7 @@ const path = require('path');
 const webpack = require('webpack');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
 const MiniCSSExtract = require('mini-css-extract-plugin');
+const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 
 const basePath = __dirname;
 const distPath = 'dist';
@@ -119,6 +120,7 @@ function webpackConfigGenerator(env) {
       new webpack.DefinePlugin({ENV: JSON.stringify({
         WP_ENDPOINT: ENV.WP_ENDPOINT
       })}),
+      new FaviconsWebpackPlugin('./src/assets/favicon.jpg')
     ],
   };
   
