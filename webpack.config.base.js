@@ -32,7 +32,7 @@ function webpackConfigGenerator(env) {
   const sourcemaps = isDevelopment;
   const localIdentName = isDevelopment
     ? '[local]--[hash:base64:5]'
-    : '[hash:base64:2]';
+    : '[hash:base26:5]';
 
   const isMock = !!env.mock;
   const ENV = envVariables(env);
