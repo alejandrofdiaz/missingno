@@ -17,6 +17,7 @@ const envVariables = (env) =>
         return acc;
       },
       {
+        ...process.env,
         ...dotEnvValues.parsed,
         ...(!!JSON.parse(env.mock || false)
           ? { WP_ENDPOINT: process.env.WP_MOCK_ENDPOINT }
@@ -112,7 +113,7 @@ function webpackConfigGenerator(env) {
         baseUrl: ENV.BASE_URL,
       }),
       new MiniCSSExtract({
-        filename: '[name].css',
+        filename: '[chunkhash][name].css',
         chunkFilename: '[id].css',
       }),
       new webpack.DefinePlugin({ENV: JSON.stringify({
