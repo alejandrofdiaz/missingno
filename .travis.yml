@@ -5,6 +5,7 @@ script:
   - yarn lint
   - yarn build:prod
   - yarn test
+  - node createEnv.js
 cache:
   directories:
     - 'node_modules'
