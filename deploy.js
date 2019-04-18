@@ -1,29 +1,40 @@
 const dotEnvValues = require('dotenv').config();
 
-const FtpDeploy = require('ftp-deploy');
+const Ssh2SftpClient = require('ssh2-sftp-client');
 const path = require('path');
+const fs = require('fs');
 
 const ENV = dotEnvValues.parsed;
 
 const config = {
-  user: ENV.FTP_USER,
+  username: ENV.FTP_USER,
   password: ENV.FTP_PASSWORD,
   host: ENV.FTP_HOST,
-  port: 21,
+  port: ENV.FTP_PORT,
   localRoot: path.join(__dirname, ENV.LOCALPATH),
   remoteRoot: ENV.REMOTEPATH,
-  include: ['*'],
-  deleteRemote: true,
-  forcePasv: true,
 };
 
-console.log(`Starting FTP deployment to ${ENV.FTP_HOST}`);
+const fileToUpload = () => 
+  fs.readdirSync(config.localRoot)
+    .map(fileName => ({
+      pathRemote: `${config.remoteRoot}/${fileName}`, 
+      pathLocal: path.join(config.localRoot, fileName),
+    }));
 
-new FtpDeploy()
-  .deploy(config, (err, res)=>{
-    if(err){
-      throw new Error('Deploy Error '+ err);
-    }else{
-      console.log(res);
-    }
+const client = new Ssh2SftpClient();
+
+client
+  .connect(config)
+  .then(res=>client.rmdir(ENV.REMOTEPATH, true))
+  .then(()=>client.mkdir(ENV.REMOTEPATH, true))
+  .then(()=>Promise
+      .all(fileToUpload()
+        .map(({pathLocal, pathRemote})=>client.put(pathLocal, pathRemote))
+      ))
+  .then(err=>client.end());
+
+  client.on('error', (err)=>{
+    console.log(err);
+    return client.end();
   });
