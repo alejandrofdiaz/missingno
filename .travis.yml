@@ -10,6 +10,6 @@ cache:
     - 'node_modules'
 deploy:
   provider: script
-  script: bash deploy.sh
+  script: bash deploy.js
   on:
     branch: master

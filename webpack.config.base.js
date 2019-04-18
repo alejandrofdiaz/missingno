@@ -7,14 +7,12 @@ const MiniCSSExtract = require('mini-css-extract-plugin');
 const basePath = __dirname;
 const distPath = 'dist';
 
-const indextInput = './src/index.html';
+const indextInput = './src/index.ejs';
 const indexOutput = 'index.html';
 
 const envVariables = (env) =>
-  JSON.stringify(
     Object.entries(env).reduce(
       (acc, [attribute, value]) => {
-        console.log(attribute, value);
         acc[attribute] = JSON.parse(value);
         return acc;
       },
@@ -24,8 +22,8 @@ const envVariables = (env) =>
           ? { WP_ENDPOINT: process.env.WP_MOCK_ENDPOINT }
           : {}),
       },
-    ),
-  );
+    );
+  
 
 function webpackConfigGenerator(env) {
   const isDevelopment = !!JSON.parse(env.development);
@@ -35,6 +33,7 @@ function webpackConfigGenerator(env) {
     : '[hash:base64:2]';
 
   const isMock = !!env.mock;
+  const ENV = envVariables(env);
 
   const webpackInitConfig = {
     resolve: {
@@ -101,10 +100,6 @@ function webpackConfigGenerator(env) {
           use: [
             {
               loader: 'file-loader',
-              options: {
-                // outputPath: 'images/',
-                // publicPath: 'images/',
-              },
             },
           ],
         },
@@ -114,17 +109,18 @@ function webpackConfigGenerator(env) {
       new HTMLWebpackPlugin({
         filename: indexOutput,
         template: indextInput,
+        baseUrl: ENV.BASE_URL,
       }),
       new MiniCSSExtract({
         filename: '[name].css',
         chunkFilename: '[id].css',
       }),
-      new webpack.DefinePlugin({
-        ENV: envVariables(env),
-      }),
+      new webpack.DefinePlugin({ENV: JSON.stringify({
+        WP_ENDPOINT: ENV.WP_ENDPOINT
+      })}),
     ],
   };
-
+  
   return webpackInitConfig;
 }
 
