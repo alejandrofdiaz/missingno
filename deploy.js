@@ -13,14 +13,17 @@ const config = {
   localRoot: path.join(__dirname, ENV.LOCALPATH),
   remoteRoot: ENV.REMOTEPATH,
   include: ['*'],
-  deleteRemote: true
+  deleteRemote: true,
+  forcePasv: true,
 };
 
-console.log('Starting FTP deployment');
+console.log(`Starting FTP deployment to ${ENV.FTP_HOST}`);
 
 new FtpDeploy()
-  .deploy(config)
-  .then(console.log)
-  .catch(err=>{
-    throw new Error('Deploy Error '+ err);
+  .deploy(config, (err, res)=>{
+    if(err){
+      throw new Error('Deploy Error '+ err);
+    }else{
+      console.log(res);
+    }
   });
