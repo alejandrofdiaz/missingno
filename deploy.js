@@ -13,7 +13,11 @@ const config = {
   deleteRemote: true
 };
 
+console.log('Starting FTP deployment');
+
 new FtpDeploy()
   .deploy(config)
   .then(console.log)
-  .catch(err=>console.log('err', err));
+  .catch(err=>{
+    throw new Error('Deploy Error', err);
+  });
