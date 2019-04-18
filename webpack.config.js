@@ -5,9 +5,16 @@ const devConfig = require('./webpack.config.dev.js');
 
 function webpackEnviromentSelector(env) {
   let config;
-  console.log(!!JSON.parse(env.mock || false));
-  if (env.production) config = prodConfig;
-  if (env.development) config = devConfig(env);
+
+  const isDevelopment = !!JSON.parse(env.development);
+
+  console.log('DEVELOPMENT: ', isDevelopment);
+
+  if (isDevelopment) {
+    config = devConfig(env);
+  } else {
+    config = prodConfig;
+  }
 
   const baseConfig = baseConfigGenerator(env);
 
