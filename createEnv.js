@@ -4,7 +4,10 @@ const path = require('path');
 
 const ENV = dotEnvValues.parsed;
 
-const createEnvContent = () => Object.entries({...ENV})
+const createEnvContent = () => Object.entries({
+  ...process.env,
+  ...ENV
+})
   .reduce((prev, [attr, value])=> prev.concat([`${attr}=${value}`]),[])
   .join('\n');
 
