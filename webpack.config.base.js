@@ -121,7 +121,10 @@ function webpackConfigGenerator(env) {
         WP_ENDPOINT: ENV.WP_ENDPOINT,
         VERSION: require('./package.json').version
       })}),
-      new FaviconsWebpackPlugin('./src/assets/favicon.jpg')
+      new FaviconsWebpackPlugin({
+        logo:'./src/assets/favicon.jpg',
+        prefix: './',
+      })
     ],
   };
   
