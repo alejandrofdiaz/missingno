@@ -1,4 +1,4 @@
-import { api } from 'api/base';
+import { mediaApi } from 'api/media';
 import { MediaObject } from 'api/MediaObject';
 import React, { useEffect, useState } from 'react';
 import { FullscreenData, StateContext } from 'state/state';
@@ -22,7 +22,7 @@ export const App: React.FunctionComponent = () => {
 
   useEffect(() => {
     if (!initialized) {
-      api.media().then((response) => {
+      mediaApi.get().then((response) => {
         setPictureData(response);
       });
     }
