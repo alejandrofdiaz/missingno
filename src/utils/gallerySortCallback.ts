@@ -1,7 +1,7 @@
 import { SortCallback } from 'components/Gallery/Gallery';
 import { PictureProps } from 'components/Picture/Picture';
 
-export const monthSortCallback: SortCallback = (acc, node, index) => {
+export const monthSortCallback: SortCallback = (acc, node) => {
   const { date } = node.props as PictureProps;
   const dateId = `${date.getFullYear()}${date.getMonth()}${date.getDate()}`;
   if (!acc[dateId]) {

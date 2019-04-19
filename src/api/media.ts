@@ -45,4 +45,3 @@ export class MediaAPI {
 }
 
 export const mediaApi = new MediaAPI();
-

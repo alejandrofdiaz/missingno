@@ -49,13 +49,16 @@ describe('<Picture With Context>', () => {
 
     component = mount(
       <StateContext.Provider
-        value={{
-          // tslint:disable-next-line:no-any
-          fullScreenData: { data: 'coolData' } as any,
-          fullScreenOpened: false,
-          setFullScreenData: setFullscreenDataMock,
-          toggleFullscreen: toggleFullscreenData,
-        }}
+        value={
+          {
+            // tslint:disable-next-line:no-any
+            fullScreenData: { data: 'coolData' } as any,
+            fullScreenOpened: false,
+            setFullScreenData: setFullscreenDataMock,
+            toggleFullscreen: toggleFullscreenData,
+            // tslint:disable-next-line: no-any
+          } as any
+        }
       >
         <PictureWithContext
           date={new Date()}
