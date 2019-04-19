@@ -1,4 +1,4 @@
-import React, { Fragment, useContext } from 'react';
+import React, { useContext } from 'react';
 import { StateContext } from 'state/state';
 import { monthSortCallback } from 'utils/gallerySortCallback';
 
@@ -7,17 +7,17 @@ import { Footer, FooterElement } from './Footer/Footer';
 import { FullscreenWithContext } from './Fullscreen/Fullscreen';
 import { Gallery } from './Gallery/Gallery';
 import { Header } from './Header/Header';
-import { useFetchMedia } from './hooks/useFetchMedia';
+import { InfiniteScrollWithContext } from './InfiniteScroll/InfiniteScroll';
+import { Loader } from './Loader/Loader';
 import { PictureWithContext } from './Picture/Picture';
 
 export const App: React.FunctionComponent = () => {
   const Context = useContext(StateContext);
-  useFetchMedia();
 
   const { pictureData } = Context;
 
   return (
-    <Fragment>
+    <InfiniteScrollWithContext>
       <Container>
         <Header />
         <Gallery sortCallback={monthSortCallback}>
@@ -38,6 +38,9 @@ export const App: React.FunctionComponent = () => {
         </Footer>
       </Container>
       <FullscreenWithContext />
-    </Fragment>
+      <Loader isOpen={Context.loaderOpened} />
+    </InfiniteScrollWithContext>
   );
 };
+
+App.displayName = 'App';

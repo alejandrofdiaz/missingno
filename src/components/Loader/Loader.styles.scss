@@ -1,0 +1,60 @@
+@import 'styles/_vars';
+
+$loader-backdrop-color: $backdrop-color;
+$loader-color: $gray-400;
+$loader-font-size: $h2-font-size;
+$loader-box-width: 200px;
+$loader-box-height: 60px;
+$loader-box-border: 5px;
+
+.container {
+  position: fixed;
+  display: none;
+  background-color: $loader-backdrop-color;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  justify-content: center;
+  align-items: center;
+  &.active {
+    display: flex;
+  }
+}
+
+.wrapper {
+  display: block;
+  color: $loader-color;
+}
+
+.title {
+  font-size: $loader-font-size;
+}
+
+.box {
+  display: block;
+  width: $loader-box-width;
+  height: $loader-box-height;
+  border: $loader-box-border solid $loader-color;
+  position: relative;
+  &:before {
+    content: '';
+    display: block;
+    position: absolute;
+    background-color: $loader-color;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    animation: linear infinite;
+    animation-name: loading;
+    animation-duration: 1s;
+  }
+}
+
+@keyframes loading {
+  0% {
+    right: 100%;
+  }
+  100% {
+    right: 0;
+  }
+}

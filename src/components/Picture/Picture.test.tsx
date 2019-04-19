@@ -16,6 +16,12 @@ describe('<Picture/>', () => {
         onClick={onClickMock}
         id="test"
         currentIndex={0}
+        rawData={
+          {
+            media_details: { sizes: { thumbnail: { source_url: 'test' } } },
+            // tslint:disable-next-line: no-any
+          } as any
+        }
       />,
     );
   });
@@ -52,7 +58,10 @@ describe('<Picture With Context>', () => {
         value={
           {
             // tslint:disable-next-line:no-any
-            fullScreenData: { data: 'coolData' } as any,
+            fullScreenData: {
+              media_details: { sizes: { thumbnail: { source_url: 'test' } } },
+              // tslint:disable-next-line: no-any
+            } as any,
             fullScreenOpened: false,
             setFullScreenData: setFullscreenDataMock,
             toggleFullscreen: toggleFullscreenData,
@@ -65,7 +74,12 @@ describe('<Picture With Context>', () => {
           alt="test"
           src="test"
           // tslint:disable-next-line:no-any
-          rawData={{ data: 'coolData' } as any}
+          rawData={
+            {
+              media_details: { sizes: { thumbnail: { source_url: 'test' } } },
+              // tslint:disable-next-line: no-any
+            } as any
+          }
           id="test"
           currentIndex={0}
         />
@@ -80,7 +94,9 @@ describe('<Picture With Context>', () => {
       .onClick('1');
 
     expect(setFullscreenDataMock).toHaveBeenCalledWith({
-      rawData: { data: 'coolData' },
+      rawData: {
+        media_details: { sizes: { thumbnail: { source_url: 'test' } } },
+      },
       index: 0,
     });
     expect(toggleFullscreenData).toHaveBeenCalledWith(true);

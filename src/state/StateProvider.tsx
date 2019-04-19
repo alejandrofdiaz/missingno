@@ -10,7 +10,7 @@ interface StateProviderProps {
 export const StateProvider = ({ children }: StateProviderProps) => {
   const [pictureData, setPictureData] = useState<MediaObject[]>([]);
   const [fullScreenOpened, toggleFullscreen] = useState(false);
-
+  const [loaderOpened, toggleLoader] = useState(false);
   const [fullScreenData, setFullScreenData] = useState<FullscreenData>({
     index: -1,
     rawData: undefined,
@@ -19,12 +19,14 @@ export const StateProvider = ({ children }: StateProviderProps) => {
   return (
     <StateContext.Provider
       value={{
+        loaderOpened,
         pictureData,
         setPictureData,
         setFullScreenData,
         fullScreenOpened,
         toggleFullscreen,
         fullScreenData,
+        toggleLoader,
       }}
     >
       {children}

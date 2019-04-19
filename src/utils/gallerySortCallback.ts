@@ -3,7 +3,13 @@ import { PictureProps } from 'components/Picture/Picture';
 
 export const monthSortCallback: SortCallback = (acc, node) => {
   const { date } = node.props as PictureProps;
-  const dateId = `${date.getFullYear()}${date.getMonth()}${date.getDate()}`;
+  const dateId = `${date.getFullYear()}${date
+    .getMonth()
+    .toString()
+    .padStart(2, '0')}${date
+    .getDate()
+    .toString()
+    .padStart(2, '0')}`;
   if (!acc[dateId]) {
     acc[dateId] = { displayName: dateId, nodes: [] };
   }
