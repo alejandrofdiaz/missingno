@@ -20,7 +20,7 @@ export const InfiniteScrollWithContext = ({
       dataLength={pictureData.length}
       next={fetchValues}
       hasMore={hasMore}
-      loader={<h4>Loading</h4>}
+      loader={null}
     >
       {children}
     </InfiniteScroll>
