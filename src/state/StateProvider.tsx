@@ -31,3 +31,5 @@ export const StateProvider = ({ children }: StateProviderProps) => {
     </StateContext.Provider>
   );
 };
+
+StateProvider.displayName = 'StateProvider';
