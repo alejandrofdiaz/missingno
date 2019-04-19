@@ -1,4 +1,6 @@
-import React, { useContext } from 'react';
+import { DefaultCopies } from 'lib/const';
+import { Env } from 'lib/env';
+import React, { Fragment, useContext } from 'react';
 import { StateContext } from 'state/state';
 import { monthSortCallback } from 'utils/gallerySortCallback';
 
@@ -17,29 +19,34 @@ export const App: React.FunctionComponent = () => {
   const { pictureData } = Context;
 
   return (
-    <InfiniteScrollWithContext>
-      <Container>
-        <Header />
-        <Gallery sortCallback={monthSortCallback}>
-          {pictureData.map(({ source_url, date_gmt, id, alt_text }, index) => (
-            <PictureWithContext
-              src={source_url}
-              alt={alt_text}
-              date={new Date(date_gmt)}
-              key={id}
-              id={id}
-              currentIndex={index}
-              rawData={pictureData[index]}
-            />
-          ))}
-        </Gallery>
-        <Footer>
-          <FooterElement href="https://twitter.com/acurtis_" title="Twitter" />
-        </Footer>
-      </Container>
-      <FullscreenWithContext />
-      <Loader isOpen={Context.loaderOpened} />
-    </InfiniteScrollWithContext>
+    <Fragment>
+      <InfiniteScrollWithContext>
+        <Container>
+          <Header />
+          <Gallery sortCallback={monthSortCallback}>
+            {pictureData.map(
+              ({ source_url, date_gmt, id, alt_text }, index) => (
+                <PictureWithContext
+                  src={source_url}
+                  alt={alt_text || DefaultCopies.ALT_DESCRIPTION}
+                  date={new Date(date_gmt)}
+                  key={id}
+                  id={id}
+                  currentIndex={index}
+                  rawData={pictureData[index]}
+                />
+              ),
+            )}
+          </Gallery>
+        </Container>
+        <FullscreenWithContext />
+        <Loader isOpen={Context.loaderOpened} />
+      </InfiniteScrollWithContext>
+      <Footer>
+        <FooterElement href="https://twitter.com/acurtis_" title="Twitter" />
+        <FooterElement title={Env.VERSION} />
+      </Footer>
+    </Fragment>
   );
 };
 

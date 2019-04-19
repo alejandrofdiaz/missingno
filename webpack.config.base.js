@@ -118,7 +118,8 @@ function webpackConfigGenerator(env) {
         chunkFilename: '[id].css',
       }),
       new webpack.DefinePlugin({ENV: JSON.stringify({
-        WP_ENDPOINT: ENV.WP_ENDPOINT
+        WP_ENDPOINT: ENV.WP_ENDPOINT,
+        VERSION: require('./package.json').version
       })}),
       new FaviconsWebpackPlugin('./src/assets/favicon.jpg')
     ],

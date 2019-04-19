@@ -1,6 +1,5 @@
 export interface ENVType {
-  development: boolean;
-  mock: boolean;
+  VERSION: string;
   WP_ENDPOINT: string;
 }
 
