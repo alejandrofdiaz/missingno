@@ -1,9 +1,9 @@
 $spacing: 8px;
 $grid-breakpoints-xs: 0;
-$grid-breakpoints-sm: $spacing * 72;
-$grid-breakpoints-md: $spacing * 96;
-$grid-breakpoints-lg: $spacing * 124;
-$grid-breakpoints-xl: $spacing * 150;
+$grid-breakpoints-sm: $spacing * 72; //576px
+$grid-breakpoints-md: $spacing * 96; //768px
+$grid-breakpoints-lg: $spacing * 124; //992px
+$grid-breakpoints-xl: $spacing * 150; //1200
 
 //
 //    ____      _

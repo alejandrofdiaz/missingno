@@ -51,11 +51,9 @@ export const Fullscreen = ({
         FullscreenStylesScss.fullscreenWrapper,
         ...(opened ? [FullscreenStylesScss.fullscreenOpened] : []),
       ].join(' ')}
+      onClick={() => toggleFullscreen(false)}
     >
-      <div
-        className={FullscreenStylesScss.fullscreen}
-        onClick={() => toggleFullscreen(false)}
-      >
+      <div className={FullscreenStylesScss.fullscreen}>
         {!!data && (
           <div
             className={FullscreenStylesScss.fullscreenImageWrapper}
