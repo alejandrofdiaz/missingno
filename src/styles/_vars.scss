@@ -4,3 +4,43 @@ $grid-breakpoints-sm: $spacing * 72;
 $grid-breakpoints-md: $spacing * 96;
 $grid-breakpoints-lg: $spacing * 124;
 $grid-breakpoints-xl: $spacing * 150;
+
+//
+//    ____      _
+//   / ___|___ | | ___  _ __
+//  | |   / _ \| |/ _ \| '__|
+//  | |__| (_) | | (_) | |
+//   \____\___/|_|\___/|_|
+//
+//
+
+$white: #fff !default;
+$gray-100: #f8f9fa !default;
+$gray-200: #e9ecef !default;
+$gray-300: #dee2e6 !default;
+$gray-400: #ced4da !default;
+$gray-500: #adb5bd !default;
+$gray-600: #6c757d !default;
+$gray-700: #495057 !default;
+$gray-800: #343a40 !default;
+$gray-900: #212529 !default;
+$black: #000 !default;
+
+$backdrop-color: rgba(#212529, 0.9);
+//
+//   _____           _
+//  |  ___|__  _ __ | |_
+//  | |_ / _ \| '_ \| __|
+//  |  _| (_) | | | | |_
+//  |_|  \___/|_| |_|\__|
+//
+//
+
+$font-size-base: 1rem !default; // Assumes the browser default, typically `16px`
+
+$h1-font-size: $font-size-base * 2.5 !default;
+$h2-font-size: $font-size-base * 2 !default;
+$h3-font-size: $font-size-base * 1.75 !default;
+$h4-font-size: $font-size-base * 1.5 !default;
+$h5-font-size: $font-size-base * 1.25 !default;
+$h6-font-size: $font-size-base !default;

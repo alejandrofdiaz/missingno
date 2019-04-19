@@ -119,16 +119,34 @@ Fullscreen.defaultProps = {
   onPrevious: noop,
 };
 
-type FullscreenWithContextOwnProps = Pick<
-  FullscreenProps,
-  'onNext' | 'onPrevious'
->;
-
-export const FullscreenWithContext = (props: FullscreenWithContextOwnProps) => {
+export const FullscreenWithContext = () => {
   const Context = useContext(StateContext);
+  const onNext = (currentIndex: number) => {
+    const followingIndex = currentIndex + 1;
+    const nextPicture = Context.pictureData[followingIndex];
+    if (!!nextPicture) {
+      Context.setFullScreenData!({
+        rawData: nextPicture,
+        index: followingIndex,
+      });
+    }
+  };
+
+  const onPrevious = (currentIndex: number) => {
+    const followingIndex = currentIndex - 1;
+    const previousPicture = Context.pictureData[followingIndex];
+    if (!!previousPicture) {
+      Context.setFullScreenData!({
+        rawData: previousPicture,
+        index: followingIndex,
+      });
+    }
+  };
+
   return (
     <Fullscreen
-      {...props}
+      onNext={onNext}
+      onPrevious={onPrevious}
       currentIndex={Context.fullScreenData.index}
       data={getMediaSrcSet(Context.fullScreenData.rawData!)}
       opened={Context.fullScreenOpened}

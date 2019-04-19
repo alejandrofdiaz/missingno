@@ -11,6 +11,7 @@ describe('<Footer/>', () => {
       <Footer>
         <FooterElement href="https://twitter.com" title="twitter" />
         <FooterElement href="https://twitter.com" title="twitter" />
+        <FooterElement title="no link" />
       </Footer>,
     );
   });
@@ -22,11 +23,11 @@ describe('<Footer/>', () => {
 
   describe('children', () => {
     it('should render', () => {
-      expect(component.find('.element')).toHaveLength(2);
+      expect(component.find('.element')).toHaveLength(3);
     });
 
     it('should render link classes', () => {
-      expect(component.find('.link')).toHaveLength(2);
+      expect(component.find('.link')).toHaveLength(3);
     });
 
     it('should have href', () => {
@@ -37,6 +38,7 @@ describe('<Footer/>', () => {
           .props().href,
       ).toBe('https://twitter.com');
     });
+
     it('should have title', () => {
       expect(
         component
@@ -44,6 +46,12 @@ describe('<Footer/>', () => {
           .at(0)
           .props().title,
       ).toBe('twitter');
+    });
+
+    describe('without href', () => {
+      it('should render span', () => {
+        expect(component.find('span.link')).toHaveLength(1);
+      });
     });
   });
 });

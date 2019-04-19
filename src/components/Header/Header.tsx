@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import HeaderStylesScss from './Header.styles.scss';
 
-const APP_NAME = 'My App';
+const APP_NAME = 'miseria.online';
 
 export const Header = ({ title }: { title: string }) => (
   <header className={HeaderStylesScss.container}>

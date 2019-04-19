@@ -3,6 +3,7 @@ const path = require('path');
 const webpack = require('webpack');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
 const MiniCSSExtract = require('mini-css-extract-plugin');
+const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 
 const basePath = __dirname;
 const distPath = 'dist';
@@ -31,7 +32,7 @@ function webpackConfigGenerator(env) {
   const sourcemaps = isDevelopment;
   const localIdentName = isDevelopment
     ? '[local]--[hash:base64:5]'
-    : '[hash:base64:2]';
+    : '[hash:base26:5]';
 
   const isMock = !!env.mock;
   const ENV = envVariables(env);
@@ -117,8 +118,10 @@ function webpackConfigGenerator(env) {
         chunkFilename: '[id].css',
       }),
       new webpack.DefinePlugin({ENV: JSON.stringify({
-        WP_ENDPOINT: ENV.WP_ENDPOINT
+        WP_ENDPOINT: ENV.WP_ENDPOINT,
+        VERSION: require('./package.json').version
       })}),
+      new FaviconsWebpackPlugin('./src/assets/favicon.jpg')
     ],
   };
   

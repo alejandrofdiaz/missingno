@@ -17,14 +17,18 @@ export interface PictureProps {
   src: string;
 }
 
-export const Picture = ({ src, alt, onClick, id }: PictureProps) => (
+export const Picture = ({ src, alt, onClick, id, rawData }: PictureProps) => (
   <div className={PictureStylesScss.wrapper}>
     <button
       type="button"
       className={PictureStylesScss.moreButton}
       onClick={() => onClick(id)}
     >
-      <img className={PictureStylesScss.picture} src={src} alt={alt} />
+      <img
+        className={PictureStylesScss.picture}
+        src={rawData!.media_details.sizes.thumbnail.source_url}
+        alt={alt}
+      />
     </button>
   </div>
 );

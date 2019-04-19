@@ -1,11 +1,16 @@
 import { MediaObject } from 'api/MediaObject';
 import { createContext } from 'react';
+import { noop } from 'utils/noop';
 
 interface GlobalState {
   fullScreenData: FullscreenData;
   fullScreenOpened: boolean;
-  setFullScreenData?: (props: FullscreenData) => void;
-  toggleFullscreen?: (value: boolean) => void;
+  loaderOpened: boolean;
+  pictureData: MediaObject[];
+  setFullScreenData: (props: FullscreenData) => void;
+  setPictureData: (pictures: MediaObject[]) => void;
+  toggleFullscreen: (value: boolean) => void;
+  toggleLoader: (value: boolean) => void;
 }
 
 export interface FullscreenData {
@@ -14,6 +19,12 @@ export interface FullscreenData {
 }
 
 export const StateContext = createContext<GlobalState>({
+  loaderOpened: false,
+  pictureData: [],
   fullScreenOpened: false,
-  fullScreenData: { index: -1, rawData: undefined },
+  fullScreenData: { index: -2, rawData: undefined },
+  setFullScreenData: noop,
+  setPictureData: noop,
+  toggleFullscreen: noop,
+  toggleLoader: noop,
 });

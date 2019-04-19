@@ -4,7 +4,18 @@ const TerserJSPlugin = require('terser-webpack-plugin');
 const webpackConfig = {
   mode: 'production',
   optimization: {
-    minimizer: [new TerserJSPlugin({}), new OptimizeCssAssetsPlugin({})],
+    minimizer: [new TerserJSPlugin({
+      terserOptions: {
+        output: {
+          comments: false,
+        },
+      },
+    }), new OptimizeCssAssetsPlugin({
+      cssProcessor: require('cssnano'),
+      cssProcessorPluginOptions: {
+        preset: ['default', { discardComments: { removeAll: true } }],
+      },
+    })],
   },
 };
 

@@ -32,8 +32,8 @@ describe('utils/monthSortCallback', () => {
     expect(
       monthSortCallback({}, { props: { date: new Date(1, 2, 3) } }),
     ).toEqual({
-      '190123': {
-        displayName: '190123',
+      '19010203': {
+        displayName: '19010203',
         nodes: [{ props: { date: new Date(1, 2, 3) } }],
       },
     });

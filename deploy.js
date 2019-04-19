@@ -24,6 +24,8 @@ const fileToUpload = () =>
 
 const client = new Ssh2SftpClient();
 
+console.log('Deploying Assets');
+
 client
   .connect(config)
   .then(res=>client.rmdir(ENV.REMOTEPATH, true))
@@ -32,7 +34,8 @@ client
       .all(fileToUpload()
         .map(({pathLocal, pathRemote})=>client.put(pathLocal, pathRemote))
       ))
-  .then(err=>client.end());
+  .then(err=>client.end())
+  .then(()=>console.log('Assets Deployed'));
 
   client.on('error', (err)=>{
     console.log(err);

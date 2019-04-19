@@ -44,7 +44,7 @@ export const Gallery = ({
     Record<string, SortedObject>
   >(sortCallback, {});
 
-  const sortedChildrenArray = Object.values(sortedChildrenObject);
+  const sortedChildrenArray = Object.values(sortedChildrenObject).reverse();
 
   return (
     <div className={[GalleryStylesScss.gallery, ...[className]].join(' ')}>

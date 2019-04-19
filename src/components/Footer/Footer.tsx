@@ -3,20 +3,24 @@ import * as React from 'react';
 import FooterStylesScss from './Footer.styles.scss';
 
 interface FooterElementProps {
-  href: string;
+  href?: string;
   title: string;
 }
 
 export const FooterElement = ({ href, title }: FooterElementProps) => (
   <li className={FooterStylesScss.element}>
-    <a
-      className={FooterStylesScss.link}
-      href={href}
-      title={title}
-      target="_blank"
-    >
-      {title}
-    </a>
+    {href ? (
+      <a
+        className={FooterStylesScss.link}
+        href={href}
+        title={title}
+        target="_blank"
+      >
+        {title}
+      </a>
+    ) : (
+      <span className={FooterStylesScss.link}> {title}</span>
+    )}
   </li>
 );
 

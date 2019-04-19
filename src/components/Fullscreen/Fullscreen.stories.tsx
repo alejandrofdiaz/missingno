@@ -4,7 +4,7 @@ import React from 'react';
 
 import { Fullscreen } from './Fullscreen';
 
-storiesOf('<Fullscreen>', module)
+storiesOf('<Fullscreen/>', module)
   .add('basic', () => {
     const opened = boolean('opened', true);
 
