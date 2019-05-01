@@ -1,6 +1,6 @@
 {
   "name": "missingno-journal",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "own journal",
   "main": "index.js",
   "scripts": {
