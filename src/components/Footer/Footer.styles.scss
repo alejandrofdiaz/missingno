@@ -1,11 +1,16 @@
 @import 'styles/_vars';
+@import 'styles/_dark';
 
 $container-padding: $spacing * 2;
-$container-background: rgba(255, 255, 255, 1);
-$container-color: black;
+$container-background: $light-background;
+$container-color: $light-color;
+
+$dark-container-background: $dark-background;
+$dark-container-color: $dark-color;
 
 .container {
   position: sticky;
+  position: -webkit-sticky;
   bottom: 0;
   padding: $container-padding;
   background-color: $container-background;
@@ -27,4 +32,11 @@ $container-color: black;
 
 .link {
   color: inherit;
+}
+
+@include darkMode() {
+  .container {
+    background-color: $dark-container-background;
+    color: $dark-container-color;
+  }
 }
