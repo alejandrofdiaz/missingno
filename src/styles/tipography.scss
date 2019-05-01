@@ -1,3 +1,7 @@
+@import './vars';
+
+$selection_color: $accent;
+
 @font-face {
   font-family: 'VT323';
   font-style: normal;
@@ -7,4 +11,7 @@
 
 * {
   font-family: 'VT323', monospace;
+  &::selection {
+    background-color: $selection_color;
+  }
 }

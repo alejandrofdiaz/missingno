@@ -1,4 +1,5 @@
-import React, { useContext } from 'react';
+import { clearAllBodyScrollLocks, disableBodyScroll } from 'body-scroll-lock';
+import React, { useContext, useEffect, useRef } from 'react';
 import { StateContext } from 'state/state';
 import useKey from 'use-key-hook';
 import { getMediaSrcSet } from 'utils/getMediaSrc';
@@ -23,6 +24,17 @@ export const Fullscreen = ({
   data,
   currentIndex,
 }: FullscreenProps) => {
+  const wrapperEl = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (opened) {
+      disableBodyScroll(wrapperEl.current!);
+    } else {
+      clearAllBodyScrollLocks();
+    }
+    return () => clearAllBodyScrollLocks();
+  }, [opened]);
+
   useKey(
     (pressedKey: number) => {
       switch (pressedKey) {
@@ -47,6 +59,7 @@ export const Fullscreen = ({
 
   return (
     <div
+      ref={wrapperEl}
       className={[
         FullscreenStylesScss.fullscreenWrapper,
         ...(opened ? [FullscreenStylesScss.fullscreenOpened] : []),
@@ -116,6 +129,8 @@ Fullscreen.defaultProps = {
   onNext: noop,
   onPrevious: noop,
 };
+
+Fullscreen.displayName = 'Fullscreen';
 
 export const FullscreenWithContext = () => {
   const Context = useContext(StateContext);

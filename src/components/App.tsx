@@ -5,6 +5,7 @@ import { StateContext } from 'state/state';
 import { monthSortCallback } from 'utils/gallerySortCallback';
 
 import { Container } from './Container/Container';
+import { DarkThemeToggle } from './DarkThemeToggle/DarkThemeToggle';
 import { Footer, FooterElement } from './Footer/Footer';
 import { FullscreenWithContext } from './Fullscreen/Fullscreen';
 import { Gallery } from './Gallery/Gallery';
@@ -45,6 +46,7 @@ export const App: React.FunctionComponent = () => {
       <Footer>
         <FooterElement href="https://twitter.com/acurtis_" title="Twitter" />
         <FooterElement title={Env.VERSION} />
+        <DarkThemeToggle />
       </Footer>
     </Fragment>
   );
