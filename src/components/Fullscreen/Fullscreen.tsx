@@ -33,7 +33,7 @@ export const Fullscreen = ({
       clearAllBodyScrollLocks();
     }
     return () => clearAllBodyScrollLocks();
-  }, [opened]);
+  }, [opened, currentIndex]);
 
   useKey(
     (pressedKey: number) => {
@@ -73,18 +73,14 @@ export const Fullscreen = ({
             onClick={(event) => event.stopPropagation()}
           >
             <input
-              className={`${FullscreenStylesScss.fullscreenDirection} ${
-                FullscreenStylesScss.fullscreenDirectionPrevious
-              }`}
+              className={`${FullscreenStylesScss.fullscreenDirection} ${FullscreenStylesScss.fullscreenDirectionPrevious}`}
               type="button"
               onClick={() => {
                 onPrevious(currentIndex);
               }}
             />
             <input
-              className={`${FullscreenStylesScss.fullscreenDirection} ${
-                FullscreenStylesScss.fullscreenDirectionNext
-              }`}
+              className={`${FullscreenStylesScss.fullscreenDirection} ${FullscreenStylesScss.fullscreenDirectionNext}`}
               type="button"
               onClick={() => {
                 onNext(currentIndex);
