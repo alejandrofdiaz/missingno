@@ -83,8 +83,9 @@ function webpackConfigGenerator(env) {
               loader: 'css-loader',
               options: {
                 sourceMap: sourcemaps,
-                modules: true,
-                localIdentName,
+                modules: {
+                  localIdentName,
+                },
               },
             },
             {
