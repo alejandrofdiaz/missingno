@@ -13,11 +13,11 @@ export interface PictureProps {
   date: Date;
   id: string | number;
   onClick: (id: string | number) => void;
-  rawData?: MediaObject;
+  rawData: MediaObject;
   src: string;
 }
 
-export const Picture = ({ src, alt, onClick, id, rawData }: PictureProps) => (
+export const Picture = ({ alt, onClick, id, rawData }: PictureProps) => (
   <div className={PictureStylesScss.wrapper}>
     <button
       type="button"
@@ -26,7 +26,7 @@ export const Picture = ({ src, alt, onClick, id, rawData }: PictureProps) => (
     >
       <img
         className={PictureStylesScss.picture}
-        src={rawData!.media_details.sizes.thumbnail.source_url}
+        src={rawData.media_details.sizes.thumbnail.source_url}
         alt={alt}
       />
     </button>

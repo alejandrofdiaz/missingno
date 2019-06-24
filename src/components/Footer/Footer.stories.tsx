@@ -3,7 +3,7 @@ import React from 'react';
 
 import { Footer, FooterElement } from './Footer';
 
-storiesOf('<Footer/>', module).add('basic', () => {
+storiesOf('<Footer>', module).add('basic', () => {
   return (
     <Footer>
       <FooterElement href="https://twitter.com" title="twitter" />

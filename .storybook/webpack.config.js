@@ -38,8 +38,7 @@ module.exports = {
             loader: 'css-loader',
             options: {
               sourceMap: true,
-              modules: true,
-              localIdentName,
+              modules: { localIdentName },
             },
           },
           {

@@ -4,9 +4,14 @@ import React from 'react';
 
 import { Loader } from './Loader';
 
-storiesOf('<Loader/>', module)
+storiesOf('<Loader>', module)
   .add('basic', () => {
     const opened = boolean('opened', true);
-    return <Loader isOpen={opened} />;
+    return (
+      <React.Fragment>
+        <div id="loader" />
+        <Loader isOpen={opened} />
+      </React.Fragment>
+    );
   })
   .addDecorator(withKnobs);
