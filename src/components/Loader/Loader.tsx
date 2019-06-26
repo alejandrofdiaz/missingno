@@ -1,6 +1,6 @@
 import { clearAllBodyScrollLocks, disableBodyScroll } from 'body-scroll-lock';
-import * as React from 'react';
-import ReactDom from 'react-dom';
+import React, { useEffect, useRef } from 'react';
+import { createPortal } from 'react-dom';
 
 import LoaderStylesScss from './Loader.styles.scss';
 
@@ -10,44 +10,31 @@ interface LoaderProps {
   isOpen: boolean;
 }
 
-export class Loader extends React.Component<LoaderProps, {}> {
-  public static defaultProps = {
-    isOpen: true,
-  };
-  public static displayName = 'Loader';
-  private el: HTMLElement;
-  private loaderRoot: HTMLElement;
-  constructor(props: LoaderProps) {
-    super(props);
-    this.el = document.createElement('div');
-    this.el.classList.add(LoaderStylesScss.container);
-  }
+export const Loader = ({ isOpen }: LoaderProps) => {
+  const rootElement = useRef(document.createElement('div'));
 
-  public componentDidMount() {
-    this.loaderRoot = document.getElementById(LOADER_ROOT_ID)!;
-    this.loaderRoot.appendChild(this.el);
-  }
+  useEffect(() => {
+    rootElement.current.classList.add(LoaderStylesScss.container);
+    const loaderRoot = document.getElementById(LOADER_ROOT_ID)!;
+    loaderRoot.appendChild(rootElement.current);
+    return () => rootElement.current.remove();
+  }, []);
 
-  public render() {
-    const { isOpen } = this.props;
-
+  useEffect(() => {
     if (isOpen) {
-      this.el.classList.add(LoaderStylesScss.active);
-      disableBodyScroll(this.loaderRoot);
+      rootElement.current.classList.add(LoaderStylesScss.active);
+      disableBodyScroll(rootElement.current);
     } else {
-      this.el.classList.remove(LoaderStylesScss.active);
+      rootElement.current.classList.remove(LoaderStylesScss.active);
       clearAllBodyScrollLocks();
     }
+  }, [isOpen]);
 
-    return ReactDom.createPortal(this.loaderMarkup(), this.el);
-  }
-
-  private loaderMarkup() {
-    return (
-      <div className={LoaderStylesScss.wrapper}>
-        <h2 className={LoaderStylesScss.title}>loading...</h2>
-        <div className={LoaderStylesScss.box} />
-      </div>
-    );
-  }
-}
+  return createPortal(
+    <div className={LoaderStylesScss.wrapper}>
+      <h2 className={LoaderStylesScss.title}>loading...</h2>
+      <div className={LoaderStylesScss.box} />
+    </div>,
+    rootElement.current,
+  );
+};
